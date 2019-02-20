@@ -1,6 +1,8 @@
 package action;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -22,7 +24,7 @@ import org.xml.sax.SAXException;
  * 
 **/
 
-public class ParseProducts {
+public class ParseProductsSKU {
 	
 	public static void main(String[] args) {
 		String token = "xq0o8r3bkuvlf66xv5pmpwp8jax9vvvv";
@@ -39,7 +41,7 @@ public class ParseProducts {
 		request.addHeader("Accept", "application/xml");
 		request.addHeader("Content-Type", "application/xml");
 		
-		
+		LinkedHashSet<String> lhs = null;
 		try {
 			
 			HttpResponse response = client.execute(request);
@@ -47,12 +49,30 @@ public class ParseProducts {
 			//xml DOM document parser 
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+	        
 	        Document doc = dBuilder.parse(response.getEntity().getContent());
 	        
 	        NodeList skuList = doc.getElementsByTagName("sku");
 	        
+	        lhs = new LinkedHashSet<String>();
+	        
 	        for(int i = 0; i < skuList.getLength(); i++) {
-	        	System.out.println((String) skuList.item(i).getTextContent());
+	        	String sku = skuList.item(i).getTextContent();
+	        	lhs.add(sku);
+	        }
+	        
+	        //change to array to iterator it
+	        String[] lhsArray = (String[]) lhs.toArray();
+	        for(int i = 0; i < lhsArray.length; i++) {
+	        	System.out.println(lhsArray[i]);
+	        }
+	        
+	        
+	        //make an iterator and used it to iterate it through the LinkedHashSet
+	        Iterator<String> skuIterator = lhs.iterator();
+	        
+	        while(skuIterator.hasNext()) {
+	        	System.out.println(skuIterator.next());
 	        }
 	        
 		} catch (ClientProtocolException e) {
@@ -71,6 +91,9 @@ public class ParseProducts {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
+	
+
 	
 }
