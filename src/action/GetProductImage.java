@@ -10,6 +10,32 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClientBuilder;
 
+/**
+ * 
+ * this is the response. use the file url in the response and get the image by
+ * using it in localhost/magento2/pub/media/catalog/product...rest of the file url
+ * 
+ * Response: HttpResponseProxy{HTTP/1.1 200 OK [Date: Wed, 20 Feb 2019 17:22:12 GMT, Server: Apache/2.4.37 (Win32) OpenSSL/1.1.1a PHP/7.2.13, X-Powered-By: PHP/7.2.13, Set-Cookie: PHPSESSID=3dje7n1soodbercn1ufop25s57; expires=Wed, 20-Feb-2019 18:22:20 GMT; Max-Age=3600; path=/magento2; domain=localhost; HttpOnly, Expires: Thu, 19 Nov 1981 08:52:00 GMT, Cache-Control: no-store, no-cache, must-revalidate, Pragma: no-cache, X-Frame-Options: SAMEORIGIN, X-UA-Compatible: IE=edge, Content-Length: 348, Keep-Alive: timeout=5, max=100, Connection: Keep-Alive, Content-Type: application/xml; charset=utf-8] ResponseEntityProxy{[Content-Type: application/xml; charset=utf-8,Content-Length: 348,Chunked: false]}}
+ * entity is not null
+ * <?xml version="1.0"?>
+ * <response>
+ * 	<item>
+ * 		<id>3392</id>
+ * 		<media_type>image</media_type>
+ * 		<label></label>
+ * 		<position>1</position>
+ * 		<disabled>false</disabled>
+ * 		<types>
+ * 			<item>image</item>
+ * 			<item>small_image</item>
+ * 			<item>thumbnail</item>
+ * 		</types>
+ * 		<file>/w/s/wsh11-red_main_1.jpg</file>
+ * 	</item>
+ * </response>
+ * 
+ **/
+
 public class GetProductImage {
 	public static void main(String[] args) {
 		BufferedReader br = null;
